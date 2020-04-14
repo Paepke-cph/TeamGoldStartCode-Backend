@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import utils.ParallelTask;
+import concurrent.ParallelTask;
 
 public class TagCounter implements ParallelTask {
   private String url;
@@ -64,18 +64,5 @@ public class TagCounter implements ParallelTask {
 
   public int getBodyCount() {
     return bodyCount;
-  }
-
-  @Override
-  public String toString() {
-    return "TagCounter{" +
-            "url='" + url + '\'' +
-            ", title='" + title + '\'' +
-            ", h1Count=" + h1Count +
-            ", h2Count=" + h2Count +
-            ", divCount=" + divCount +
-            ", bodyCount=" + bodyCount +
-            ", isCalled=" + isCalled +
-            '}';
   }
 }

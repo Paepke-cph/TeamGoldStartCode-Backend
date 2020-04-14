@@ -1,4 +1,4 @@
-package utils;
+package concurrent;
 
 public interface ParallelTask {
     void doWork();

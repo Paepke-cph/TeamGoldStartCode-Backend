@@ -1,9 +1,7 @@
 package webscraper;
 
-import utils.ParallelTask;
-import utils.ParallelWorker;
+import concurrent.ParallelWorker;
 
-import javax.ws.rs.ext.ExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;

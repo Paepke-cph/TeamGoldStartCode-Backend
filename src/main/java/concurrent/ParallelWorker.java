@@ -1,4 +1,4 @@
-package utils;
+package concurrent;
 
 import java.util.List;
 import java.util.concurrent.*;
