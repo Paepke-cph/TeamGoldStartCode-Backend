@@ -1,4 +1,4 @@
-package security;
+package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -26,6 +26,7 @@ import errorhandling.GenericExceptionMapper;
 import javax.persistence.EntityManagerFactory;
 
 import facades.UserFacade;
+import security.SharedSecret;
 import utils.EMF_Creator;
 
 @Path("login")
@@ -44,7 +45,7 @@ public class LoginEndpoint {
     String password = json.get("password").getAsString();
 
     try {
-      User user = USER_FACADE.getVeryfiedUser(username, password);
+      User user = USER_FACADE.getVerifiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);

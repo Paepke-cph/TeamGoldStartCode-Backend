@@ -3,20 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.paepke</groupId>
-    <artifactId>joke-monodo</artifactId>
+    <artifactId>BaseStartcode</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>joke-monodo</name>
+    <name>BaseStartcode</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- TODO: Change the URL to your own tomcat server. Used to deploy your WAR-file
-        -->
         <remote.server>http://157.230.21.103/manager/text</remote.server>
-
     </properties>
 
     <dependencies>
