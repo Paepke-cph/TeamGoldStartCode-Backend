@@ -34,8 +34,9 @@ import java.io.IOException;
                 contact = @Contact(name = "Gruppe 2", email = "gruppe2@cphbusiness.dk")
         ),
         tags = {
-                @Tag(name = "jokes", description = "API related to Jokes")
-
+                @Tag(name = "jokes", description = "API related to Jokes"),
+                @Tag(name = "login", description = "API related to Login"),
+                @Tag(name = "scrape", description = "API related to WebScraping")
         },
         servers = {
                 @Server(
