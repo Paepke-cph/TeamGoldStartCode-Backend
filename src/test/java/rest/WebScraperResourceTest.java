@@ -5,8 +5,6 @@
  */
 package rest;
 
-import entity.User;
-import errorhandling.AuthenticationException;
 import facades.UserFacade;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -20,9 +18,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
-import utils.EMF_Creator.DbSelector;
-import utils.EMF_Creator.Strategy;
-import utils.Settings;
 
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.UriBuilder;
@@ -40,7 +35,7 @@ public class WebScraperResourceTest {
     private static HttpServer httpServer;
 
     public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
+    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.CREATE);
     public static final UserFacade USER_FACADE = UserFacade.getUserFacade(EMF);
 
     static HttpServer startServer() {
@@ -50,11 +45,9 @@ public class WebScraperResourceTest {
 
     @BeforeAll
     public static void setUpClass() {
-        //This method must be called before you request the EntityManagerFactory
         EMF_Creator.startREST_TestWithDB();
 
         httpServer = startServer();
-        //Setup RestAssured
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
         RestAssured.defaultParser = Parser.JSON;
@@ -66,7 +59,6 @@ public class WebScraperResourceTest {
         httpServer.shutdownNow();
     }
 
-    // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
     @BeforeEach
     public void setUp() {
     }
