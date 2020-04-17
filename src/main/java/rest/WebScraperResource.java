@@ -25,29 +25,6 @@ import java.util.ArrayList;
 import dtos.TagDTO;
 import webscraper.WebScraper;
 
-@OpenAPIDefinition(
-        info = @Info(
-                title = "Webscraper API",
-                version = "0.1",
-                description = "Simple API to scrape a sample of webpages",
-                contact = @Contact(name = "Gruppe 2", email = "gruppe2@cphbusiness.dk")
-        ),
-        tags = {
-                @Tag(name = "scrape", description = "API related to web scraping")
-
-        },
-        servers = {
-                @Server(
-                        description = "For Local host testing",
-                        url = "http://localhost:8080/BaseStartcode"
-                ),
-                @Server(
-                        description = "Server API",
-                        url = "https://www.paepke.software/BaseStartcode"
-                )
-
-        }
-)
 @Path("scrape")
 public class WebScraperResource {
 

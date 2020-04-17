@@ -38,29 +38,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import security.SharedSecret;
 import utils.EMF_Creator;
 
-@OpenAPIDefinition(
-        info = @Info(
-                title = "Login API",
-                version = "0.1",
-                description = "API for logging in to an account",
-                contact = @Contact(name = "Gruppe 2", email = "gruppe2@cphbusiness.dk")
-        ),
-        tags = {
-                @Tag(name = "login", description = "API for signing into an account")
-
-        },
-        servers = {
-                @Server(
-                        description = "For Local host testing",
-                        url = "http://localhost:8080/BaseStartcode"
-                ),
-                @Server(
-                        description = "Server API",
-                        url = "https://paepke.software/BaseStartcode"
-                )
-
-        }
-)
 @Path("login")
 public class LoginEndpoint {
 

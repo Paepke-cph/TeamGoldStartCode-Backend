@@ -40,11 +40,11 @@ import java.io.IOException;
         servers = {
                 @Server(
                         description = "For Local host testing",
-                        url = "http://localhost:8080/BaseStartcode"
+                        url = "http://localhost:8080/TeamGoldStartCode"
                 ),
                 @Server(
                         description = "Server API",
-                        url = "https://www.paepke.software/BaseStartcode"
+                        url = "https://www.paepke.software/TeamGoldStartCode"
                 )
         }
 )
