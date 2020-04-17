@@ -53,7 +53,7 @@ public class WebScraperResourceTest {
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
         RestAssured.defaultParser = Parser.JSON;
-        testProps.load(WebScraperResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
+        //testProps.load(WebScraperResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
     }
 
     @AfterAll
