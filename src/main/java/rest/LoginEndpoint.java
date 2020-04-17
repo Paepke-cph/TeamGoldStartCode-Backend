@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import entities.User;
+import entity.User;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,16 +26,55 @@ import errorhandling.GenericExceptionMapper;
 import javax.persistence.EntityManagerFactory;
 
 import facades.UserFacade;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import security.SharedSecret;
 import utils.EMF_Creator;
 
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Login API",
+                version = "0.1",
+                description = "API for logging in to an account",
+                contact = @Contact(name = "Gruppe 2", email = "gruppe2@cphbusiness.dk")
+        ),
+        tags = {
+                @Tag(name = "login", description = "API for signing into an account")
+
+        },
+        servers = {
+                @Server(
+                        description = "For Local host testing",
+                        url = "http://localhost:8080/BaseStartcode"
+                ),
+                @Server(
+                        description = "Server API",
+                        url = "https://paepke.software/BaseStartcode"
+                )
+
+        }
+)
 @Path("login")
 public class LoginEndpoint {
 
   public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
   private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
   public static final UserFacade USER_FACADE = UserFacade.getUserFacade(EMF);
-  
+
+  @Operation(summary = "Log in to an account, given a username and a corresponding password",
+    tags = {"login"},
+    responses = {
+    @ApiResponse(
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "200", description = "The Requested login, returning with username and a token"),
+            @ApiResponse(responseCode = "403", description = "Invalid username or password! Please try again")})
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)

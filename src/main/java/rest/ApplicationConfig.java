@@ -3,6 +3,7 @@ package rest;
 import cors.CorsRequestFilter;
 import cors.CorsResponseFilter;
 import errorhandling.AuthenticationExceptionMapper;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -17,6 +18,7 @@ public class ApplicationConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
+        resources.add(OpenApiResource.class);
         addRestResourceClasses(resources);
         return resources;
     }
@@ -31,6 +33,8 @@ public class ApplicationConfig extends Application {
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         resources.add(CorsRequestFilter.class);
         resources.add(CorsResponseFilter.class);
+        resources.add(WebScraperResource.class);
+        resources.add(JokeResource.class);
         resources.add(errorhandling.GenericExceptionMapper.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(LoginEndpoint.class);

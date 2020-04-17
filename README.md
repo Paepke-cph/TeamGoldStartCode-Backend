@@ -14,8 +14,8 @@ This code sample / Project, is to act as a codebase on which a backend REST-API 
 4. Change the context path in the file ./src/main/webapp/context.xml to that of your artifactId
 
 ## Basic usage
-1. Place all entities in the package entity.
-1.2 Make sure that all entities also are listed in the persistence.xml file, within a <class> tag.
+1. Place all entity in the package entity.
+1.2 Make sure that all entity also are listed in the persistence.xml file, within a <class> tag.
 2. Place all database facing facades in facades.
 3. Place all Rest Endpoints in rest.
 3.2 Make sure athat all endpoints and providers are listed in the ApplicationConfig.java file, like this: 

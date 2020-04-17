@@ -2,5 +2,6 @@
 .idea/
 nb-configuration.xml
 /target/
-
+out/
+sqldump/
 
