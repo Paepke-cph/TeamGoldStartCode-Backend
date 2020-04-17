@@ -12,7 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <remote.server>http://157.230.21.103/manager/text</remote.server>
+        <remote.server>https://paepke.software/manager/text</remote.server>
     </properties>
 
     <dependencies>
