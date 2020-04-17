@@ -55,16 +55,8 @@ public class Settings {
     }
 
      private static void intializeProperties() {
-        if(props == null){
-            props = loadProperties();
-        }
-    }
-    
-//    //Simple manual test
-//    public static void main(String[] args) {
-//       System.out.println(getPropertyValue("db.port"));
-//       System.out.println(getDEV_DBConnection());
-//       System.out.println(getTEST_DBConnection());
-//       System.out.println(getPropertyValue("i.dont.exist"));
-//    }
+         if (props == null) {
+             props = loadProperties();
+         }
+     }
 }

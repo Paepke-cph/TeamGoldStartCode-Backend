@@ -1,6 +1,8 @@
 
 package security;
 
+import utils.Settings;
+
 import java.security.SecureRandom;
 
 /* This generates a secure random per execution of the server
@@ -19,7 +21,12 @@ public class SharedSecret {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         */
         //REMOVE BEFORE PRODUCTION
-        if(true){
+        boolean isDeployed = Settings.getPropertyValue("DEPLOYED") != null;
+        if(isDeployed) {
+            //  Get the secret from the the env.
+            secret = System.getenv("SECRET").getBytes();
+        } else {
+            // If this is not deplayed return dummy
             return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".getBytes();
         }
         if (secret == null) {  //Or better read as an environment variable set on production server
