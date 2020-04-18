@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import entity.User;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -25,6 +26,7 @@ import errorhandling.AuthenticationException;
 import errorhandling.GenericExceptionMapper;
 import javax.persistence.EntityManagerFactory;
 
+import errorhandling.UserException;
 import facades.UserFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -70,6 +72,33 @@ public class LoginEndpoint {
       Logger.getLogger(GenericExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
     }
     throw new AuthenticationException("Invalid username or password! Please try again");
+  }
+
+  @Operation(summary = "Create a regular user",
+          tags = {"login"},
+          responses = {
+                  @ApiResponse(
+                          content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                  @ApiResponse(responseCode = "200", description = "Successful creation, returning with username and a token"),
+                  @ApiResponse(responseCode = "406", description = UserException.IN_USE_USERNAME)})
+  @POST
+  @Path("/create")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response create(String jsonString) throws UserException {
+    JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
+    try {
+      String username = json.get("username").getAsString();
+      String password = json.get("password").getAsString();
+      User user = USER_FACADE.createUser(username,password);
+      String token = createToken(username, user.getRolesAsStrings());
+      JsonObject responseJson = new JsonObject();
+      responseJson.addProperty("username", username);
+      responseJson.addProperty("token", token);
+      return Response.ok(new Gson().toJson(responseJson)).build();
+    } catch (NullPointerException | JOSEException e) {
+      throw new UserException("Could not create user");
+    }
   }
 
   private String createToken(String userName, List<String> roles) throws JOSEException {

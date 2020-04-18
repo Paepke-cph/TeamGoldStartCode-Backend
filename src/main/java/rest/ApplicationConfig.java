@@ -3,6 +3,8 @@ package rest;
 import cors.CorsRequestFilter;
 import cors.CorsResponseFilter;
 import errorhandling.AuthenticationExceptionMapper;
+import errorhandling.UserException;
+import errorhandling.UserExceptionMapper;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 import java.util.Set;
@@ -40,6 +42,7 @@ public class ApplicationConfig extends Application {
         resources.add(LoginEndpoint.class);
         resources.add(security.RolesAllowedFilter.class);
         resources.add(AuthenticationExceptionMapper.class);
+        resources.add(UserExceptionMapper.class);
     }
 
 }

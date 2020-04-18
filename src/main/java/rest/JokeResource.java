@@ -58,7 +58,7 @@ public class JokeResource {
     @Context
     private UriInfo context;
 
-    @Operation(summary = "Scraping a list of webpages for DIV and BODY tags",
+    @Operation(summary = "Getting two random jokes, one Chuck Norris and one Dad Joke",
             tags = {"jokes"},
             responses = {
                     @ApiResponse(

@@ -1,5 +1,6 @@
 package rest;
 
+import errorhandling.UserException;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
@@ -67,6 +68,30 @@ public class LoginEndpointTest {
                 .assertThat()
                 .statusCode(HttpStatus.FORBIDDEN_403.getStatusCode())
                 .body("message", equalTo("Invalid user name or password"));
+    }
+
+    @Test
+    public void testCreate_with_incorrect_data() {
+        String payload = "{\"password\":\"blablabla\"}";
+        given()
+                .contentType(ContentType.JSON)
+                .body(payload)
+                .post("login/create")
+                .then()
+                .statusCode(HttpStatus.NOT_ACCEPTABLE_406.getStatusCode())
+                .body("message", equalTo("Could not create user"));
+    }
+
+    @Test
+    public void testCreate_with_duplicate_username() {
+        String payload = "{\"username\":\"user\",\"password\":\"this is actually not the real password \"}";
+        given()
+                .contentType(ContentType.JSON)
+                .body(payload)
+                .post("login/create")
+                .then()
+                .statusCode(HttpStatus.NOT_ACCEPTABLE_406.getStatusCode())
+                .body("message", equalTo(UserException.IN_USE_USERNAME));
     }
 
     @Disabled
