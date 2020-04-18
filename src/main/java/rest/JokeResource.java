@@ -28,9 +28,9 @@ import java.io.IOException;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "Jokes API",
+                title = "Team Gold startcode API",
                 version = "0.1",
-                description = "Simple API to getting random jokes",
+                description = "This API is use as a base for building a backend for a separate Frontend",
                 contact = @Contact(name = "Gruppe 2", email = "gruppe2@cphbusiness.dk")
         ),
         tags = {

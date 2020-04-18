@@ -48,12 +48,10 @@ public class JokeResourceTest {
 
     @BeforeAll
     public static void setUpClass() throws IOException {
-        //This method must be called before you request the EntityManagerFactory
         EMF_Creator.startREST_TestWithDB();
         emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.CREATE);
 
         httpServer = startServer();
-        //Setup RestAssured
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
         RestAssured.defaultParser = Parser.JSON;
@@ -66,7 +64,6 @@ public class JokeResourceTest {
         httpServer.shutdownNow();
     }
 
-    // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
     @BeforeEach
     public void setUp() {
     }

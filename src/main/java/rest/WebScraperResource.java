@@ -9,15 +9,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.servers.Server;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import webscraper.TagCounter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,7 +31,7 @@ public class WebScraperResource {
             responses = {
                     @ApiResponse(
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = TagDTO.class))),
-                    @ApiResponse(responseCode = "200", description = "The requested webscraping"),
+                    @ApiResponse(responseCode = "200", description = "The requested web scraping"),
                     @ApiResponse(responseCode = "403", description = "Not authenticated - do login")})
     @GET
     @RolesAllowed({"admin"})
