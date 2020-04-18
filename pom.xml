@@ -12,7 +12,12 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <remote.server>https://paepke.software/manager/text</remote.server>
+        <sonar.projectKey>Paepke-cph_TeamGoldStartCode-Backend</sonar.projectKey>
+        <sonar.organization>paepke-cph</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>c68bcd9dccd642bfc10b7b5d3e2b4bed5da286d6</sonar.login>
     </properties>
 
     <dependencies>

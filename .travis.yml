@@ -12,6 +12,7 @@ cache:
 
 script:
   - mvn test
+  - mvn verify sonar:sonar
   - mvn -Dremote.user=$REMOTE_USER -Dremote.password=$REMOTE_PW tomcat7:deploy
 
 services:

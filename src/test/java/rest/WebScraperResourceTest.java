@@ -5,64 +5,14 @@
  */
 package rest;
 
-import facades.UserFacade;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
-import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.*;
-import utils.EMF_Creator;
-
-import javax.persistence.EntityManagerFactory;
-import javax.ws.rs.core.UriBuilder;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class WebScraperResourceTest {
-
-    private static final int SERVER_PORT = 7777;
-    private static final String SERVER_URL = "http://localhost/api";
-
-    static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
-    private static HttpServer httpServer;
-
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.CREATE);
-
-    private static Properties testProps = new Properties();
-
-    static HttpServer startServer() {
-        ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
-        return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
-    }
-
-    @BeforeAll
-    public static void setUpClass() throws IOException {
-        EMF_Creator.startREST_TestWithDB();
-
-        httpServer = startServer();
-        RestAssured.baseURI = SERVER_URL;
-        RestAssured.port = SERVER_PORT;
-        RestAssured.defaultParser = Parser.JSON;
-        //testProps.load(WebScraperResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
-    }
-
-    @AfterAll
-    public static void closeTestServer() {
-        EMF_Creator.endREST_TestWithDB();
-        httpServer.shutdownNow();
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
+public class WebScraperResourceTest extends BaseResourceTest {
     @Test
     public void testGetScape_without_login() {
         given()
