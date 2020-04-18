@@ -24,9 +24,10 @@ public class JokeResourceTest extends BaseResourceTest {
                 .body("message", equalTo("Not authenticated - do login"));
     }
 
+    @Disabled
     @Test
     public void testGetJokes_with_user_login() {
-        String loginPayload ="{\"username\":\""+userInfo.get("user1_username")+"\",\"password\":\""+userInfo.get("user1_password")+"\"}";
+        String loginPayload ="{\"username\":\""+testProps.getProperty("user1_username")+"\",\"password\":\""+testProps.getProperty("user1_password")+"\"}";
         String token = given()
                 .contentType(ContentType.JSON)
                 .body(loginPayload)
@@ -45,9 +46,10 @@ public class JokeResourceTest extends BaseResourceTest {
                         "joke2",notNullValue(), "joke2Reference", notNullValue());
     }
 
+    @Disabled
     @Test
     public void testGetJokes_with_admin_login() {
-        String loginPayload ="{\"username\":\""+userInfo.get("user2_username")+"\",\"password\":\""+userInfo.get("user2_password")+"\"}";
+        String loginPayload ="{\"username\":\""+testProps.getProperty("user2_username")+"\",\"password\":\""+testProps.getProperty("user2_password")+"\"}";
         String token = given()
                 .contentType(ContentType.JSON)
                 .body(loginPayload)

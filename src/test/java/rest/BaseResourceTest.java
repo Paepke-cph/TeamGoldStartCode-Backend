@@ -43,19 +43,7 @@ abstract public class BaseResourceTest {
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
         RestAssured.defaultParser = Parser.JSON;
-        try {
-            testProps.load(JokeResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
-            userInfo.put("user1_username", testProps.getProperty("user1_username"));
-            userInfo.put("user1_password", testProps.getProperty("user1_password"));
-            userInfo.put("user2_username", testProps.getProperty("user2_username"));
-            userInfo.put("user2_password", testProps.getProperty("user2_password"));
-        } catch (Exception e) {
-            // If we don't have a file, try to get them from System.
-            userInfo.put("user1_username",System.getenv("user1_username"));
-            userInfo.put("user1_password",System.getenv("user1_password"));
-            userInfo.put("user2_username",System.getenv("user2_username"));
-            userInfo.put("user2_password",System.getenv("user2_password"));
-        }
+        testProps.load(JokeResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
     }
 
     @AfterAll
