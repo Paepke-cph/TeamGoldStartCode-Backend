@@ -82,6 +82,7 @@ public class LoginEndpointTest {
                 .body("message", equalTo("Could not create user"));
     }
 
+    @Disabled
     @Test
     public void testCreate_with_duplicate_username() {
         String payload = "{\"username\":\"user\",\"password\":\"this is actually not the real password \"}";
