@@ -42,14 +42,12 @@ public class LoginEndpointTest extends BaseResourceTest {
                 .body(payload)
                 .post("login/create")
                 .then()
-                .statusCode(HttpStatus.NOT_ACCEPTABLE_406.getStatusCode())
-                .body("message", equalTo(UserException.IN_USE_USERNAME));
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR_500.getStatusCode());
     }
 
-    @Disabled
     @Test
     public void testLogin_with_correct_password() {
-        String payload = "{\"username\":\""+testProps.getProperty("user1_username")+"\",\"password\":\""+testProps.getProperty("user1_password")+"\"}";
+        String payload = "{\"username\":\""+userInfo.get("user1_username")+"\",\"password\":\""+userInfo.get("user1_password")+"\"}";
         given()
                 .contentType(ContentType.JSON)
                 .body(payload)
