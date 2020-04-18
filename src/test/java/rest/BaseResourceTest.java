@@ -43,7 +43,7 @@ abstract public class BaseResourceTest {
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
         RestAssured.defaultParser = Parser.JSON;
-        testProps.load(JokeResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
+        //testProps.load(JokeResourceTest.class.getClassLoader().getResourceAsStream("testing.properties"));
     }
 
     @AfterAll
